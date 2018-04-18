@@ -1,5 +1,7 @@
 {
   "name": "book_delivery",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bulma-pricingtable": "^1.2.0"
+  }
 }
