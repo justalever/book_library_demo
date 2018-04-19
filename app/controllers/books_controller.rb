@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :library]
   before_action :authenticate_user!, except: [:index, :show]
 
   # GET /books
@@ -15,7 +15,7 @@ class BooksController < ApplicationController
 
   # GET /books/new
   def new
-    @book = Book.new
+    @book = current_user.books.build
   end
 
   # GET /books/1/edit
@@ -25,7 +25,7 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    @book = Book.new(book_params)
+    @book = current_user.books.build(book_params)
 
     respond_to do |format|
       if @book.save
@@ -62,6 +62,25 @@ class BooksController < ApplicationController
     end
   end
 
+  # Add and remove books to library
+  # for current_user
+  def library
+    type = params[:type]
+
+    if type == "add"
+      current_user.library_additions << @book
+      redirect_to book_path(@book), notice: "#{@book.title} was added to your library"
+
+    elsif type == "remove"
+      current_user.library_additions.delete(@book)
+      redirect_to book_path(@book), notice: "#{@book.title} was removed from your library"
+    else
+      # Type missing, nothing happens
+      redirect_to book_path(@book), notice: "Looks like nothing happened. Try once more!"
+    end
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
@@ -70,6 +89,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:title, :description, :author, :thumbnail)
+      params.require(:book).permit(:title, :description, :author, :thumbnail, :user_id)
     end
 end
