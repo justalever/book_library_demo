@@ -1,3 +1,7 @@
+/*
+*= require_tree .
+*/
+
 @import "bulma";
 @import "functions";
 
@@ -8,3 +12,4 @@
 .notification:not(:last-child) {
   margin-bottom: 0;
 }
+
