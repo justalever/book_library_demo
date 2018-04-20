@@ -73,7 +73,7 @@ class BooksController < ApplicationController
 
     elsif type == "remove"
       current_user.library_additions.delete(@book)
-      redirect_to book_path(@book), notice: "#{@book.title} was removed from your library"
+      redirect_to root_path, notice: "#{@book.title} was removed from your library"
     else
       # Type missing, nothing happens
       redirect_to book_path(@book), notice: "Looks like nothing happened. Try once more!"

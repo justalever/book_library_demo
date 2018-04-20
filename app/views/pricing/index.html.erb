@@ -10,7 +10,7 @@
           <div class="plan-item">5 Downloads</div>
         </div>
         <div class="plan-footer">
-          <button class="button is-fullwidth">Subscribe</button>
+          <%= link_to 'Subscribe', new_subscription_path(plan: "starter"), class:"button is-fullwidth" %>
         </div>
       </div>
       <div class="pricing-plan is-link is-active">
@@ -20,7 +20,7 @@
           <div class="plan-item">10 Downloads</div>
         </div>
         <div class="plan-footer">
-          <button class="button is-fullwidth">Subscribe</button>
+          <%= link_to 'Subscribe', new_subscription_path(plan: "book_worm"), class:"button is-fullwidth" %>
         </div>
       </div>
       <div class="pricing-plan is-danger">
@@ -30,7 +30,8 @@
           <div class="plan-item">30 Downloads</div>
         </div>
         <div class="plan-footer">
-          <button class="button is-fullwidth">Subscribe</button>
+          <%= link_to 'Subscribe', new_subscription_path(plan: "scholar"), class:"button is-fullwidth" %>
+
         </div>
       </div>
     </div>

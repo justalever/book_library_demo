@@ -1,11 +1,11 @@
 class SubscriptionsController < ApplicationController
+  layout "subscribe"
+
   before_action :authenticate_user!, except: [:new]
 
   def show
   end
   def create
-
-  plan_type = params[:plan]
 
   customer = if current_user.stripe_id?
                Stripe::Customer.retrieve(current_user.stripe_id)
