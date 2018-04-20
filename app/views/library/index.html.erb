@@ -2,17 +2,16 @@
   <div class="hero-body">
     <div class="container has-text-centered">
       <h1 class="title">
-        Book Delivery
+        <%= current_user.name %>'s Library
       </h1>
       <h2 class="subtitle">
-        Check out some of the latest titles
+        Download or manage your chosen titles below
       </h2>
     </div>
   </div>
 </section>
 
-<section class="section">
   <div class="book-grid">
-    <%= render @books %>
+    <%= render @library_books %>
   </div>
 </section>

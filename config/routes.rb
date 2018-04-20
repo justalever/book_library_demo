@@ -1,6 +1,10 @@
 require 'sidekiq/web'
 
+
 Rails.application.routes.draw do
+
+  resources :library, only:[:index]
+  mount Sidekiq::Web => '/sidekiq'
 
   resources :books do
     member do
