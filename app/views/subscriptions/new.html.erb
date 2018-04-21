@@ -1,28 +1,23 @@
 <section class="section">
   <div class="columns is-centered">
-    <div class="column is-5 bg-light pa5">
-<h1 class="title is-3">Subscribe</h1>
-
-<%= form_tag new_subscription_path, id: "payment-form" do %>
-  <% if current_user.card_last4? %>
-    <div class="card-on-file">
-      <p>Your current card on file is:</p>
-      <div><%= current_user.card_type %> **** **** **** <%= current_user.card_last4 %></div>
-      <div>Expires <%= current_user.card_exp_month %> / <%= current_user.card_exp_year %></div>
-
-      <p><%= link_to "Use a different card", "#", class: "use-different-card" %></p>
-    </div>
-  <% end %>
+    <div class="column is-6 border pa5">
+    <h1 class="title is-3">Subscribe</h1>
+    <hr />
+      <p>Chosen plan: <strong><%= titlize(params[:plan]) %></strong></p>
+    <hr />
+  <%= form_tag new_subscription_path, id: "payment-form" do %>
 
   <div class="field">
     <label class="label" for="card-element">
-      Credit or debit card
+      Enter credit or debit card
     </label>
     <div id="card-element">
       <!-- A Stripe Element will be inserted here. -->
     </div>
     <!-- Used to display Element errors. -->
     <div id="card-errors" role="alert"></div>
+
+    <button class="button is-fullwidth is-link mt4">Submit</button>
   </div>
 
 <% end %>

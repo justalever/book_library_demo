@@ -36,11 +36,19 @@
       </div>
 
       <div id="navbar" class="navbar-menu">
+        <div class="navbar-start">
+          <% if subscribed? %>
+            <div class="navbar-item">
+              <%= link_to library_index_path, class: 'navbar-item button is-dark' do %>
+                <i class="fa fa-book"></i>&nbsp;&nbsp;My Library
+              <% end %>
+            </div>
+          <% end %>
+        </div>
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="field is-grouped">
-            <% if user_signed_in? %>
-
+              <% if user_signed_in? %>
               <div class="navbar-item has-dropdown is-hoverable">
                 <%= link_to 'Account', edit_user_registration_path, class: "navbar-link" %>
                 <div class="navbar-dropdown is-right">
@@ -51,11 +59,13 @@
                 </div>
               </div>
             <% else %>
+
             <% if admin? %>
             <p class="control">
               <%= link_to 'New Book', new_book_path, class:'navbar-item button is-dark' %>
             </p>
             <% end %>
+
             <p class="control">
               <%= link_to 'Pricing', pricing_index_path, class:'navbar-item button is-dark' %>
             </p>
