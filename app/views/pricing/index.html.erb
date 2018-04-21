@@ -10,7 +10,7 @@
           <div class="plan-item">5 Downloads</div>
         </div>
         <div class="plan-footer">
-          <%= link_to 'Subscribe', new_subscription_path(plan: "starter"), class:"button is-fullwidth" %>
+          <%= link_to 'Subscribe', new_subscription_path(plan: "starter", plan_id: Rails.application.credentials.starter), class:"button is-fullwidth" %>
         </div>
       </div>
       <div class="pricing-plan is-link is-active">
@@ -20,7 +20,7 @@
           <div class="plan-item">10 Downloads</div>
         </div>
         <div class="plan-footer">
-          <%= link_to 'Subscribe', new_subscription_path(plan: "book_worm"), class:"button is-fullwidth" %>
+          <%= link_to 'Subscribe', new_subscription_path(plan: "book_worm", plan_id: Rails.application.credentials.book_work), class:"button is-fullwidth" %>
         </div>
       </div>
       <div class="pricing-plan is-danger">
@@ -30,7 +30,7 @@
           <div class="plan-item">30 Downloads</div>
         </div>
         <div class="plan-footer">
-          <%= link_to 'Subscribe', new_subscription_path(plan: "scholar"), class:"button is-fullwidth" %>
+          <%= link_to 'Subscribe', new_subscription_path(plan: "scholar", plan_id: Rails.application.credentials.scholar), class:"button is-fullwidth" %>
 
         </div>
       </div>

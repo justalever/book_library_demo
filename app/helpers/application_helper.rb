@@ -14,4 +14,5 @@ module ApplicationHelper
   def titlize(str)
     str.gsub('_', ' ').capitalize
   end
+
 end
