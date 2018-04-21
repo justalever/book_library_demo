@@ -42,19 +42,6 @@ ActiveRecord::Schema.define(version: 2018_04_20_141422) do
     t.integer "user_id"
   end
 
-  create_table "charges", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "stripe_id"
-    t.integer "amount"
-    t.string "card_last4"
-    t.string "card_type"
-    t.string "card_exp_month"
-    t.string "card_exp_year"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["stripe_id"], name: "index_charges_on_stripe_id", unique: true
-  end
-
   create_table "libraries", force: :cascade do |t|
     t.integer "book_id"
     t.integer "user_id"

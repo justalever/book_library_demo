@@ -31,7 +31,7 @@ document.addEventListener("turbolinks:load", function() {
   const card = elements.create('card', { style });
 
   // Add an instance of the card Element into the `card-element` <div>.
-  if (card) {
+
 
     card.mount('#card-element');
 
@@ -87,5 +87,5 @@ document.addEventListener("turbolinks:load", function() {
       hiddenInput.setAttribute('value', token.card[field]);
       form.appendChild(hiddenInput);
     }
-  }
+
 });

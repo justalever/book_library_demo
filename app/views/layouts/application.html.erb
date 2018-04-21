@@ -46,8 +46,13 @@
           <% end %>
         </div>
         <div class="navbar-end">
+
           <div class="navbar-item">
+            <% if admin? %>
+              <%= link_to 'New Book', new_book_path, class:'button is-dark' %>
+            <% end %>
             <div class="field is-grouped">
+
               <% if user_signed_in? %>
               <div class="navbar-item has-dropdown is-hoverable">
                 <%= link_to 'Account', edit_user_registration_path, class: "navbar-link" %>
@@ -60,11 +65,7 @@
               </div>
             <% else %>
 
-            <% if admin? %>
-            <p class="control">
-              <%= link_to 'New Book', new_book_path, class:'navbar-item button is-dark' %>
-            </p>
-            <% end %>
+
 
             <p class="control">
               <%= link_to 'Pricing', pricing_index_path, class:'navbar-item button is-dark' %>

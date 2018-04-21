@@ -57,11 +57,15 @@
           <div class="card-on-file">
             <h3 class="title is-3">Thank you for being a subscriber</h3>
             <hr />
-            <p>Your current card on file is:</p>
-            <div><%= current_user.card_type %> **** **** **** <%= current_user.card_last4 %></div>
+            <p>Your current card:</p>
+            <div> **** **** **** <%= current_user.card_last4 %></div>
             <div>Expires <%= current_user.card_exp_month %> / <%= current_user.card_exp_year %></div>
 
-            <p><%= link_to "Use a different card", "#", class: "use-different-card" %></p>
+            <% if current_user.subscribed? %>
+            <p><%= link_to "Cancel Subscription", subscription_path(current_user), method: :delete, data: { confirm: "Are you sure?" }, class: "use-different-card" %></p>
+            <% else %>
+              <p> You are not currently subscribed. <%= link_to 'Sign up', pricing_index_path %>
+            <% end %>
           </div>
         <% end %>
       </div>

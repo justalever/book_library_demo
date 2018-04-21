@@ -3,14 +3,13 @@ class SubscriptionsController < ApplicationController
   before_action :authenticate_user!, except: [:new, :create]
 
   def new
+    if user_signed_in? && current_user.subscribed?
+      redirect_to root_path, notice: "You are already a subscriber!"
+    end
   end
 
   def create
     Stripe.api_key = Rails.application.credentials.stripe_api_key
-
-    params.each do |key,value|
-  Rails.logger.warn "Param #{key}: #{value}"
-end
 
     plan_id = params[:plan_id]
     plan = Stripe::Plan.retrieve(plan_id)
@@ -29,18 +28,18 @@ end
     options = {
       stripe_id: customer.id,
       stripe_subscription_id: subscription.id,
-      subscribed: true
+      subscribed: true,
     }
 
     options.merge!(
-      card_last4: params[:card_last4],
-      card_exp_month: params[:card_exp_month],
-      card_exp_year: params[:card_exp_year],
-      card_type: params[:card_type]
-    ) if params[:card_last4]
+      card_last4: params[:user][:card_last4],
+      card_exp_month: params[:user][:card_exp_month],
+      card_exp_year: params[:user][:card_exp_year],
+      card_type: params[:user][:card_type]
+    ) if params[:user][:card_last4]
 
     current_user.update(options)
-    current_user.save
+
     redirect_to root_path, notice: "🎉 Your subscription was set up successfully!"
   end
 
